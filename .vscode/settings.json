@@ -1,0 +1,5 @@
+{
+    "python.autoComplete.addBrackets": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.autoClosingBrackets": "always"
+}
