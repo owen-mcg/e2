@@ -9,6 +9,7 @@
 <body>
 
     <h1>Project 1</h1>
+    <?php echo $filler;?>
 
     <h2>Mechanics</h2>
     <ul>
