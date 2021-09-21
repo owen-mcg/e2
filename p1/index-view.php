@@ -12,16 +12,12 @@
 
     <h2>Mechanics</h2>
     <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>Coming Soon!</li>
     </ul>
 
     <h2>Results</h2>
     <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>Arriving Shortly!</li>
     </ul>
 
 </body>
