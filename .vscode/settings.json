@@ -1,5 +1,23 @@
 {
     "python.autoComplete.addBrackets": true,
     "editor.bracketPairColorization.enabled": true,
-    "editor.autoClosingBrackets": "always"
+    "editor.autoClosingBrackets": "always",
+    "cSpell.ignoreWords": [
+        "Aclubs",
+        "Adiamonds",
+        "Ahearts",
+        "Aspades",
+        "Jclubs",
+        "Jdiamonds",
+        "Jhearts",
+        "Jspades",
+        "Kclubs",
+        "Kdiamonds",
+        "Khearts",
+        "Kspades",
+        "Qclubs",
+        "Qdiamonds",
+        "Qhearts",
+        "Qspades"
+    ]
 }
