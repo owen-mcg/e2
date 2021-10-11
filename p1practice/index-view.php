@@ -18,7 +18,7 @@
 
 </html>
 
-<body>
+<!-- <body>
 
     <h1>War (card game) Simulator</h1>
 
@@ -45,4 +45,4 @@
 
     <h2>Rounds</h2>
 
-</body>
+</body> -->
