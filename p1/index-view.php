@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang='en'>
 
     <head>
@@ -8,7 +8,11 @@
 
     <body>
         <h1>Project 1</h1>
-        <h2></h2>
+
+        <h2>Mechanics</h2>
+
+        <h2>Results</h2>
+        
     </body>
 
 </html>

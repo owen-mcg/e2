@@ -1,29 +1,9 @@
-<!-- ### Set up
-
-- Create a deck of cards
-- Create an array of 52 cards
-- Shuffle cards with randomizer
-- Deal cards one per player until entire deck is dealt
-- Create one new array per player containing the players hands
-- The players do not know what is in their hand
-- Count and display the total cards in each players' hands
-- The hands will not be displayed on the HTML page
-
-### Game play
-
-- While jack is not present
-- Players discard 1 card each into the center pile
-- Create array for pile of cards from discarded player cards
-- When jack is present
-- Both players immediately try to slap the jack
-- Generate random slap winner
-- The winning player accumulates to their hand all cards in the pile
-- Add all cards in pile to winning player's array -->
-
 <?php
-
+//
+// VARIABLES
+//
 // Create a deck of cards
-$deck = array(
+$deck = [
     "Ace of Spades",
     "2 of Spades",
     "3 of Spades",
@@ -76,49 +56,74 @@ $deck = array(
     "Jack of Hearts",
     "Queen of Hearts",
     "King of Hearts",
-);
-
+];
+//
+//
+// Shuffle cards
+shuffle($deck);
+//
+//
 // Create two players
 $pA = "Player A";
 $pB = "Player B";
-
+//
+//
 // Create one array per player containing the players' hands
 $paHand = [];
 $pbHand = [];
+//
+//
+// Create array for randomizer
 $playerArray = [0 => $paHand, 1 => $pbHand];
-$slapWinner = NULL;
-
+//
+//
 // Create an array for the discard pile
 $pile = [];
-
-// Shuffle cards
-shuffle($deck);
-
-// Deal cards one per player until entire deck is dealt
-while ((count($deck) > 0) && count($pbHand) != 26) {
-    if (count($paHand) == count($pbHand)) {
-        $paHand[] = array_pop($deck);
-    } else {
-        ($pbHand[] = array_pop($deck));
+//
+//
+// Check the pile for jacks
+$card_check = in_array('Jack of Spades' || 'Jack of Clubs' || 'Jack of Hearts' || 'Jack of Diamonds', $deck);
+//
+//
+// Create variable for the winner of the slap
+$slapWinner = NULL;
+//
+//
+// FUNCTIONS
+//
+// Function for the deal
+function deal($deck, $paHand, $pbHand)
+{
+    // Deal cards one per player until entire deck is dealt
+    while (count($deck) > 0) {
+        if (count($deck) % 2 == 0) {
+            $paHand[] = array_pop($deck);
+        } else {
+            $pbHand[] = array_pop($deck);
+        }
     }
-}
-
-// Count and display the total number of cards in each player's hand
-echo count($paHand);
-echo count($pbHand);
-
-do {
-    $card_check = strpos(end($pile), 'Jack');
-    // Players alternate discarding one card each to pile
+};
+//
+//
+// Function for both players discarding
+function each_discard($card_check, $pile, $paHand, $pbHand)
+{
     if ($card_check == false) {
         if (count($pile) % 2 == 0) {
-            $pile[] = array_pop($paHand);
+            $pile = [array_pop($paHand)];
             print('paPop');
         } else {
-            $pile[] = array_pop($pbHand);
+            $pile = [array_pop($pbHand)];
             print('pbPop');
         }
-    } elseif ($card_check == true) {
+    }
+}
+//
+//
+// Function for slap
+function slap($card_check, $pile, $playerArray, $paHand, $pbHand)
+{
+    if ($card_check == true) {
         $slapWinner = rand(0, 1);
         if (($playerArray[$slapWinner]) == $paHand) {
             $paHand[] = $pile;
@@ -128,18 +133,27 @@ do {
             print('pbSlap');
         }
     }
-} while (count($paHand) != 0 && count($pbHand) != 0);
-
-do {
+}
+//
+//
+// Function to find winner
+function winner($paHand, $pbHand)
+{
     if (count($paHand) == 52) {
         echo "Player A wins!";
         print('paWin');
-        goto end;
     } elseif (count($pbHand) == 52) {
         echo "Player B wins!";
         print('pbWin');
-        goto end;
-    } elseif (count($paHand) != 0 && count($pbHand) == 0) {
+    }
+}
+// goto end;
+//
+//
+// Function to slap back in
+function slap_in($paHand, $pbHand, $pile)
+{
+    if (count($paHand) != 0 && count($pbHand) == 0) {
         $pile[] = array_pop($paHand);
         if (strpos((array_pop($paHand)), 'Jack')) {
             $slapWinner = rand(0, 1);
@@ -150,18 +164,41 @@ do {
             $slapWinner = rand(0, 1);
         }
     }
-} while ((count($paHand) == 0) || (count($pbHand) == 0));
+}
+//
+//
+// Count and display the total number of cards in each player's hand
+echo count($paHand);
+echo count($pbHand);
+//
+//
+// GAME PLAY
+//
+// TEST
+while (!((count($paHand)) == 52 || (count($pbHand)) == 52)) {
+    deal($deck, $paHand, $pbHand);
+    // each_discard($card_check, $pile, $paHand, $pbHand);
+    // slap($card_check, $pile, $playerArray, $paHand, $pbHand);
+    // slap_in($paHand, $pbHand, $pile);
+    // winner($paHand, $pbHand);
+}
 
-// Cards discarded are removed from player's hand array and added to pile array
-// If jack is discarded...
-// Generate random slap winner
-// Remove cards from pile array and put them in winning player's hand array
 
-// If player's hand array is exhausted before a jack is discarded
-// Other player continues to discard
-// Player with no cards may attempt to slap back in
 
-// When player's hand array contains all 52 cards, that player wins and the game ends
 
-end:
-require 'index-view.php';
+// if ((count($paHand)) == 52 || (count($pbHand)) == 52)
+
+// while (count($paHand) != 0 && count($pbHand) != 0); {
+//     // Players alternate discarding one card each to pile
+//     if (!slap($card_check, $pile, $playerArray, $paHand, $pbHand)) {
+//         each_discard($card_check, $pile);
+//     }
+// }
+
+
+// while ((count($paHand) == 0) || (count($pbHand) == 0)); {
+
+// }
+
+// end:
+// require "index-view.php";
