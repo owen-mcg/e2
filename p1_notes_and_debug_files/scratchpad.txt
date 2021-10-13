@@ -1,0 +1,219 @@
+### Set up
+
+- Create a deck of cards
+- Create an array of 52 cards
+- Shuffle cards with randomizer
+- Deal cards one per player until entire deck is dealt
+- Create one new array per player containing the players hands
+- The players do not know what is in their hand
+- Count and display the total cards in each players' hands
+- The hands will not be displayed on the HTML page
+
+### Game play
+
+- While jack is not present
+- Players discard 1 card each into the center pile
+- Create array for pile of cards from discarded player cards
+- When jack is present
+- Both players immediately try to slap the jack
+- Generate random slap winner
+- The winning player accumulates to their hand all cards in the pile
+- Add all cards in pile to winning player's array
+
+
+
+// Cards discarded are removed from player's hand array and added to pile array
+// If jack is discarded...
+// Generate random slap winner
+// Remove cards from pile array and put them in winning player's hand array
+
+// If player's hand array is exhausted before a jack is discarded
+// Other player continues to discard
+// Player with no cards may attempt to slap back in
+
+// When player's hand array contains all 52 cards, that player wins and the game ends
+
+
+
+
+
+
+to win: one player needs all the cards (deck)
+    ideas to make that work:
+        deck == player hand (probably not)
+        number of items in array(player hand) == 52
+        
+
+----------------------------------------------------
+
+
+<?php
+//
+// VARIABLES
+//
+// Create a deck of cards
+$deck = array(
+    "Ace of Spades",
+    "2 of Spades",
+    "3 of Spades",
+    "4 of Spades",
+    "5 of Spades",
+    "6 of Spades",
+    "7 of Spades",
+    "8 of Spades",
+    "9 of Spades",
+    "10 of Spades",
+    "Jack of Spades",
+    "Queen of Spades",
+    "King of Spades",
+    "Ace of Clubs",
+    "2 of Clubs",
+    "3 of Clubs",
+    "4 of Clubs",
+    "5 of Clubs",
+    "6 of Clubs",
+    "7 of Clubs",
+    "8 of Clubs",
+    "9 of Clubs",
+    "10 of Clubs",
+    "Jack of Clubs",
+    "Queen of Clubs",
+    "King of Clubs",
+    "Ace of Diamonds",
+    "2 of Diamonds",
+    "3 of Diamonds",
+    "4 of Diamonds",
+    "5 of Diamonds",
+    "6 of Diamonds",
+    "7 of Diamonds",
+    "8 of Diamonds",
+    "9 of Diamonds",
+    "10 of Diamonds",
+    "Jack of Diamonds",
+    "Queen of Diamonds",
+    "King of Diamonds",
+    "Ace of Hearts",
+    "2 of Hearts",
+    "3 of Hearts",
+    "4 of Hearts",
+    "5 of Hearts",
+    "6 of Hearts",
+    "7 of Hearts",
+    "8 of Hearts",
+    "9 of Hearts",
+    "10 of Hearts",
+    "Jack of Hearts",
+    "Queen of Hearts",
+    "King of Hearts",
+);
+//
+//
+// Shuffle cards
+shuffle($deck);
+//
+//
+// Create two players
+$pA = "Player A";
+$pB = "Player B";
+//
+//
+// Create one array per player containing the players' hands
+$paHand = [];
+$pbHand = [];
+//
+//
+// Create array for randomizer
+$playerArray = [0 => $paHand, 1 => $pbHand];
+//
+//
+// Create an array for the discard pile
+$pile = [];
+//
+//
+// Check the pile for jacks
+$card_check = in_array('Jack', $pile);
+//
+//
+// Create variable for the winner of the slap
+$slapWinner = NULL;
+//
+//
+// FUNCTIONS
+//
+// Function for the deal
+function deal($deck, $paHand, $pbHand)
+{
+    // Deal cards one per player until entire deck is dealt
+    while (count($deck) > 0) {
+        if (count($deck) % 2 == 0) {
+            $paHand[] = array_pop($deck);
+            print('paDeal, ');
+        } else {
+            $pbHand[] = array_pop($deck);
+            print('pbDeal, ');
+        }
+    }
+};
+
+deal($deck, $paHand, $pbHand);
+echo count($paHand);
+echo count($pbHand);
+
+?>
+
+-----------------------------------------------
+
+# Thoughts and pseudocode
+
+## Slapjack
+
+### THE PACK
+
+The standard 52-card pack is used.
+
+### OBJECT OF THE GAME
+
+The goal is to win all the cards, by being first to slap each jack as it is played to the center.
+
+### THE DEAL
+
+Deal cards one at a time face down, to each player until all the cards have been dealt. The hands do not have to come out even. Without looking at any of the cards, each player squares up their hand into a neat pile in front of them.
+
+### THE PLAY
+
+Beginning on the dealer’s left, each player lifts one card at a time from their pile and places it face up in the center of the table.
+When the card played to the center is a jack, the fun begins! The first player to slap their hand down on the jack takes it, as well as all the cards beneath it. The player winning these cards turns them face down, places them under their pile of cards, and shuffles them to form a new, larger pile.
+
+When more than one player slaps at a jack, the one whose hand is directly on top of the jack wins the pile. If a player slaps at any card in the center that is not a jack, they must give one card, face down, to the player of that card. When a player has no more cards left, they remain in the game until the next jack is turned. The player may slap at the jack in an effort to get a new pile. If the player fails to win that next pile, they are out of the game.
+
+------
+
+## Pseudocode
+
+### Set up
+
+- Create a deck of cards
+  - Create an array of 52 cards
+  - Shuffle cards with randomizer
+- Create two players
+  - Deal cards one per player until entire deck is dealt
+    - Create one new array per player containing the players hands
+- The players do not know what is in their hand
+  - Count and display the total cards in each player's hand
+  - The hands will not be displayed on the HTML page
+
+### Game play
+
+- While jack is not present
+  - Players discard 1 card each into the center pile
+    - Create array for pile of cards from discarded player cards
+- When jack is present
+  - Both players immediately try to slap the jack
+    - Generate random slap winner
+  - The winning player accumulates to their hand all cards in the pile
+    - Add all cards in pile to winning player's array
+
+**Repeat game play until all cards are accumulated by one player.**
+
+-------------------------------------------------------------------
+
