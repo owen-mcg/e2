@@ -16,25 +16,30 @@
         <div class='play_form'>
             <label for='answer'>Your turn!</label>
             <button type='submit' name='answer' value='roll'>Roll!</button>
-            <!-- <button value='answer' name='answer'></button> -->
         </div>
     </form>
     <?php if (isset($_SESSION)) { ?>
     <h2>Results</h2>
-        <table>
+        <table class='table'>
             <thead>
                 <tr>
                     <th scope='col'>Round</th>
+                    <th scope='col'>Player</th>
                     <th scope='col'>Computer</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($totalScore as $round) { ?>
+            <?php var_dump($roundIndex); ?>
+            <?php $roundCount = 1; ?>
+            <?php foreach ($roundIndex as $data) { ?>
                 <tr>
-                    <td><?php echo $round; ?></td>
+                    <th scope='row'><?php echo $roundCount; ?></th>
+                    <td><?php echo $playerPoints; ?></td>
+                    <td><?php echo $computerPoints; ?></td>
+                    <?php $roundCount++; ?>
                 </tr>
-            </tbody>
             <?php } ?>
+            </tbody>
         </table>
     <?php } ?>
 </body>

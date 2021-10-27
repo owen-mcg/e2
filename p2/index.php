@@ -25,29 +25,30 @@ function roll($die1, $die2, $rolled)
     return $rolled;
 }
 
-$score = 0;
 $points = 0;
+$playerPoints = [];
+$computerPoints = [];
+$roundIndex = [];
 $count = 0;
-while ($points < 50) {
+
+if ($results == 'roll') {
     $rolled = roll($die1, $die2, $rolled);
-    if ($count % 2 == 0); {
-        if ($rolled[0] == $rolled[1]) {
-            if (array_sum($rolled) == 6) {
-                $score = $points * 0;
-            }
-            elseif (array_sum($rolled) == 12) {
-                $score = 25;
-                $points = $points + $score;
-            } else {
-                $score = 5;
-                $points = $points + $score;
-            }
+    var_dump($rolled);
+    if ($rolled[0] == $rolled[1]) {
+        if ($rolled[0] && $rolled[1] == 3) {
+            $points *= 0;
+        } elseif ($rolled[0] && $rolled[1] == 6) {
+            $points += 25;
+        } else {
+            $points += 5;
         }
+    } else {
+        $points += 0;
     }
     $count++;
-    var_dump($points);
-    $totalScore[] = $points;
+    $roundIndex[] = $count;
 }
+
 
 var_dump($_SESSION['answer']);
 $_SESSION['answer'] = null;
