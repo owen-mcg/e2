@@ -30,21 +30,25 @@
     </form>
     <?php if (isset($_SESSION)) { ?>
     <h2>Results</h2>
-        <table class='table'>
+        <table class='w3-table'>
             <thead>
                 <tr>
                     <th scope='col'>Round</th>
-                    <th scope='col'>Player</th>
-                    <th scope='col'>Computer</th>
+                    <th scope='col'>Player Score</th>
+                    <th scope='col'>Player Roll</th>
+                    <th scope='col'>Computer Score</th>
+                    <th scope='col'>Computer Roll</th>
                 </tr>
             </thead>
             <tbody>
-            <?php $roundCount = 1; ?>
+            <?php // $roundCount = 1; ?>
             <?php foreach ($roundIndex as $data) { ?>
                 <tr>
-                    <th scope='row'><?php echo $roundCount; ?></th>
-                    <td><?php echo $playerPoints[$roundCount - 1]; ?></td>
-                    <td><?php echo $computerPoints[$roundCount - 1]; ?></td>
+                    <th scope='row'><?php echo $count; ?></th>
+                    <td><?php echo $playerPoints; ?></td>
+                    <td><?php echo $playerRoll; ?></td>
+                    <td><?php echo $computerPoints[$count]; ?></td>
+                    <td><?php echo $computerRoll; ?></td>
                     <?php $roundCount++; ?>
                 </tr>
             <?php } ?>
