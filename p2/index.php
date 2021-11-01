@@ -43,8 +43,8 @@ function roll($die1, $die2, $points, $count)
 $playerPoints = [];
 $computerPoints = [];
 
-// while (isset($_SESSION)) {
-//     if ($playerPoints[$count] < 50 && $computerPoints[$count] < 50) {
+// if (isset($_SESSION)) {
+//     if ($playerPoints[$count] < 50 || $computerPoints[$count] < 50) {
 //         $roundIndex = $count;
 //     }
 // }
@@ -62,8 +62,8 @@ $roundIndex[] = $count;
 // }
 var_dump($roundIndex);
 
-// if ($playerPoints[$count] >= 50 || $computerPoints[$count] >= 50) {
-//     $_SESSION['answer'] = null;
-// }
+if ($playerPoints[$count] >= 50 || $computerPoints[$count] >= 50) {
+    $_SESSION['answer'] = null;
+}
 
 require 'index-view.php';
