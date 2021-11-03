@@ -60,10 +60,13 @@ abbr[title] {
     text-decoration: underline;
     text-decoration: underline dotted;
 }
+<<<<<<< HEAD
 @font-face {
     font-family: "Dice";
     src: url(e2/p2/Dice.ttf) format("ttf");
 }
+=======
+>>>>>>> 463da4a16e4550667ac0b1c2121eb248b508e8f2
 b,
 strong {
     font-weight: bolder;
@@ -109,7 +112,11 @@ hr {
     height: 0;
     overflow: visible;
 }
+<<<<<<< HEAD
 
+=======
+button,
+>>>>>>> 463da4a16e4550667ac0b1c2121eb248b508e8f2
 input,
 select,
 textarea,
@@ -132,12 +139,16 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
+<<<<<<< HEAD
     font-size: 16px;
     border-style: solid;
     border: 2px;
     border-radius: 5px;
     text-align: center;
     background-color: lightgrey;
+=======
+    -webkit-appearance: button;
+>>>>>>> 463da4a16e4550667ac0b1c2121eb248b508e8f2
 }
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -254,9 +265,12 @@ img {
 a {
     color: inherit;
 }
+<<<<<<< HEAD
 #roll {
     font-family: 'Dice', sans;
 }
+=======
+>>>>>>> 463da4a16e4550667ac0b1c2121eb248b508e8f2
 .w3-table,
 .w3-table-all {
     border-collapse: collapse;
