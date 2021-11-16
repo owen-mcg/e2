@@ -60,10 +60,10 @@ abbr[title] {
     text-decoration: underline;
     text-decoration: underline dotted;
 }
-@font-face {
+/* @font-face {
     font-family: "Dice";
     src: url(e2/p2/Dice.ttf) format("ttf");
-}
+} */
 b,
 strong {
     font-weight: bolder;
@@ -254,8 +254,8 @@ img {
 a {
     color: inherit;
 }
-#roll {
-    font-family: 'Dice', sans;
+/* #roll {
+    font-family: 'Dice', sans; */
 }
 .w3-table,
 .w3-table-all {

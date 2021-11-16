@@ -32,7 +32,7 @@
     </form>
   </div>
   <div class='w3-container'>
-  <?php if (isset($_SESSION)) { ?>
+  <?php if (isset($_SESSION['results'])) { ?>
   <h2>Results</h2>
     <table class='w3-table-all'>
       <thead>
@@ -40,20 +40,21 @@
           <th scope='col'>Round</th>
           <th scope='col'>Player Score</th>
           <th scope='col'>Player Roll</th>
-          <th scope='col'>Computer Score</th>
+          <th scope='col'>Computer Score</th>                             
           <th scope='col'>Computer Roll</th>
         </tr>
       </thead>
       <tbody>
-      <?php if ($playerPoints < 50 && $computerPoints < 50) { ?>
-      <?php foreach($roundIndex as $data) { ?>
+      <?php // if ($winner != true) { ?>
+      <?php foreach($roundIndex as $roundCount) { ?>
         <tr>
-          <th scope='row'><?php echo $roundCount; ?></th>
-          <td><?php echo $playerPoints; ?></td>
-          <td id='roll'><?php echo $playerRoll; ?></td>
-          <td><?php echo $computerPoints; ?></td>
-          <td id='roll'><?php echo $computerRoll; ?></td>
+          <th scope='row'></th>
+          <td><?php echo $playerPoints[$roundCount]; ?></td>
+          <td><?php echo $playerRolls[$roundCount][0].', '.$playerRolls[$roundCount][1]; ?> </td>
+          <td><?php echo $computerPoints[$roundCount]; ?></td>
+          <td><?php echo $computerRolls[$roundCount][0].', '.$computerRolls[$roundCount][1]; ?> </td>
         </tr>
+      <?php } ?>
         <tr>
           <form method='POST' action='process.php'>
             <td>
@@ -63,11 +64,10 @@
             </td>
           </form>
         </tr>
-      <?php } ?>
       </tbody>
     </table>
   <?php } ?>
-  <?php } ?>
+  <?php // } ?>
   </div>
 </body>
 
