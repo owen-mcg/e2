@@ -6,9 +6,13 @@ include 'Dice.php';
 
 # Get results from previous round as stored in the session
 $results = $_SESSION['results'] ?? null;
-$roundCount = $results['roundIndex']['roundCount'] ?? 0;
 $roundIndex = $results['roundIndex'] ?? [];
 
+if ($roundIndex == null) {
+    $roundCount = 0;
+} else {
+    $roundCount = end($roundIndex);
+}
 
 # Extract player and computer past rolls from these results
 # If they exist ... otherwise start them off as an empty array
@@ -21,7 +25,8 @@ $computerPoints = $results['computerPoints'] ?? [];
 
 
 # Play a round
-$roundIndex[] = $roundCount++;
+$roundCount++;
+$roundIndex[] = $roundCount;
 $playerRoll = roll(); # roll returns an array of rolled dice
 $playerPointsThisRound = pointsCount($playerRoll, 0); # calculates points per roll
 $computerRoll = roll(); # roll returns an array of rolled dice
@@ -32,23 +37,24 @@ $computerPointsThisRound = pointsCount($computerRoll, 0);
 $playerRolls[] = $playerRoll;
 $computerRolls[] = $computerRoll;
 
-$playerPoints[] = $playerPointsThisRound;
-$computerPoints[] = $computerPointsThisRound;
+$playerPoints[] = $playerPoints[$roundCount] + $playerPointsThisRound;
+$computerPoints[] = $computerPoints[$roundCount] + $computerPointsThisRound;
 
 
 # Choose a winner
-if ($playerPoints < 50 && $computerPoints < 50) {
+if (array_sum($playerPoints) < 50 && array_sum($computerPoints) < 50) {
     $winner = null;
 } elseif ($playerPoints >= 50) {
-    $winner = 'player';
+    $winner = 'you';
 } elseif($computerPoints >= 50) {
-    $winner = 'computer';
+    $winner = 'the computer';
 }
 
 
 # Store all results in the session
 $results = [
     'roundIndex' => $roundIndex,
+    'roundCount' => $roundCount,
     'playerRolls' => $playerRolls, # array of each roll
     'playerPointsThisRound' => $playerPointsThisRound, # points for single roll (should be an int)
     'playerPoints' => $playerPoints, # sum of all points (should be an int)

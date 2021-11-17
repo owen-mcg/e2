@@ -16,5 +16,9 @@
 - <http://www.netexl.com/howtoplay/fifty-dice/>
 - <http://www.dice-play.com/Games/Fifty.htm>
 - <https://www.w3schools.com/w3css/defaulT.asp>
+- <https://getbootstrap.com/>
+- <https://www.w3schools.com/php/php_looping_foreach.asp>
 
 ## Notes for instructor
+
+Thank you so much for all of your help and support!
